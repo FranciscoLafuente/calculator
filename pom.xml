@@ -33,6 +33,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.14</version>
+		</dependency>
+		<dependency>
 			<groupId>com.iteriam</groupId>
 			<artifactId>tracer</artifactId>
 			<version>1.0.0</version>

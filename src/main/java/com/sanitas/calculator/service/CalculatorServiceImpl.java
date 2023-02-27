@@ -1,6 +1,6 @@
 package com.sanitas.calculator.service;
 
-import com.sanitas.calculator.utils.Operacion;
+import com.sanitas.calculator.utils.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -8,19 +8,19 @@ import java.math.BigDecimal;
 
 @Service
 @Slf4j
-public class CalculadoraSercieImpl implements CalculadoraService {
+public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
-    public double calcular(BigDecimal num1, BigDecimal num2, String operacion) {
-        log.info(">> Calculando el resultado de: {} {} {}", num1, operacion, num2);
+    public double calculate(BigDecimal num1, BigDecimal num2, String operation) {
+        log.info(">> Calculando el resultado de: {} {} {}", num1, operation, num2);
 
-        Operacion op = Operacion.getSignoOperacion(operacion);
+        Operation op = Operation.getSignoOperacion(operation);
 
         switch (op) {
-            case SUMAR -> {
+            case ADD -> {
                 return num1.add(num2).doubleValue();
             }
-            case RESTAR -> {
+            case SUBSTRACT -> {
                 return num1.subtract(num2).doubleValue();
             }
             default -> {

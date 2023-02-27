@@ -1,0 +1,12 @@
+server:
+    port: 8080
+spring:
+    application:
+        name: calculator
+
+# API
+calculator:
+    presentation:
+        path:
+            base: "/api/v1"
+            operation: "/calculate"

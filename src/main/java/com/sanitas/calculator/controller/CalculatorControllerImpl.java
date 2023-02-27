@@ -1,7 +1,9 @@
 package com.sanitas.calculator.controller;
 
 import com.sanitas.calculator.service.CalculatorService;
+import com.sanitas.calculator.utils.exceptions.OperationException;
 import io.corp.calculator.TracerAPI;
+import io.corp.calculator.TracerImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,12 +16,12 @@ public class CalculatorControllerImpl implements CalculatorController {
 
     private final CalculatorService calculatorService;
 
-    private final TracerAPI tracerAPI;
+    private final TracerImpl tracer = new TracerImpl();
 
     @Override
-    public ResponseEntity<Double> calcular(BigDecimal num1, BigDecimal num2, String operation) {
+    public ResponseEntity<Double> calculate(BigDecimal num1, BigDecimal num2, String operation) throws OperationException {
         double result = calculatorService.calculate(num1, num2, operation);
-        tracerAPI.trace(result);
+        tracer.trace(result);
         return ResponseEntity.ok().body(result);
     }
 }

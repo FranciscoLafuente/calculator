@@ -1,5 +1,6 @@
 package com.sanitas.calculator.controller;
 
+import com.sanitas.calculator.utils.exceptions.OperationException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 
-@RequestMapping("${calculadora.presentation.path.base}")
+@RequestMapping("${calculator.presentation.path.base}")
 public interface CalculatorController {
 
     @Operation(summary = "Obtiene el resultado de la operacion indicada")
@@ -25,12 +26,12 @@ public interface CalculatorController {
             @ApiResponse(responseCode = "400",
                     description = "Operacion invalida",
                     content = @Content)})
-    @GetMapping("${calculadora.presentation.path.calcular}")
-    ResponseEntity<Double> calcular(
+    @GetMapping("${calculator.presentation.path.operation}")
+    ResponseEntity<Double> calculate(
             @NotNull @Parameter(description = "Primer numero de la operacion", required = true)
             @RequestParam(name = "num1") BigDecimal num1,
             @NotNull @Parameter(description = "Segundo numero de la operacion", required = true)
             @RequestParam(name = "num2") BigDecimal num2,
-            @NotEmpty @Parameter(description = "Operacion a realizar", required = true)
-            @RequestParam(name = "operacion") String operacion);
+            @NotNull @Parameter(description = "Operacion a realizar", required = true)
+            @RequestParam(name = "operation") String operation) throws OperationException;
 }
